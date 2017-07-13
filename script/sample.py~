@@ -8,17 +8,13 @@ import time
 from abstractBot import *
 from geometry_msgs.msg import Twist
 
-class RandomBot(AbstractBot):
+class SampleBot(AbstractBot):
     
     def strategy(self):
-        r = rospy.Rate(100)
-        
-        target_speed = 0
-        target_turn = 0
+        r = rospy.Rate(100) #100Hz
+
         control_speed = 0
         control_turn = 0
-
-        surplus = 0
 
         UPDATE_FREQUENCY = 2
         update_time = 0
@@ -44,8 +40,7 @@ class RandomBot(AbstractBot):
             twist = Twist()
             twist.linear.x = control_speed; twist.linear.y = 0; twist.linear.z = 0
             twist.angular.x = 0; twist.angular.y = 0; twist.angular.z = control_turn
-            #print(twist)
-        
+ 
             self.vel_pub.publish(twist)
 
             r.sleep()
